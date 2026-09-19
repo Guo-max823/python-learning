@@ -83,3 +83,18 @@ huggingface-hub==0.36.0
 idna==3.11
 
 ipykernel==7.1.0
+
+streamlit
+
+plotly
+
+numpy
+
+pandas
+
+matplotlib
+
+torch
+
+torchvision
+
