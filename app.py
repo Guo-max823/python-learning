@@ -310,7 +310,9 @@ with tab4:
     st.markdown("#### 全年 AQI 日历热力图（按星期分布）")
     week_order = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
     d = df.copy()
-    d["星期"] = pd.Categorical(d["日期"].dt.day_name(locale="zh_CN"), categories=week_order, ordered=True)
+    _wk = {"Monday": "星期一", "Tuesday": "星期二", "Wednesday": "星期三",
+           "Thursday": "星期四", "Friday": "星期五", "Saturday": "星期六", "Sunday": "星期日"}
+    d["星期"] = pd.Categorical(d["日期"].dt.day_name().map(_wk), categories=week_order, ordered=True)
     fig = go.Figure(go.Heatmap(
         z=d["AQI"], x=d["日期"], y=d["星期"],
         colorscale=[[0, "#67C23A"], [0.15, "#409EFF"], [0.3, "#E6A23C"],
