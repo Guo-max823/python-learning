@@ -43,7 +43,9 @@ def load_data():
     df["月份"] = df["日期"].dt.month
     df["季节"] = df["月份"].map({12: "冬", 1: "冬", 2: "冬", 3: "春", 4: "春", 5: "春",
                                 6: "夏", 7: "夏", 8: "夏", 9: "秋", 10: "秋", 11: "秋"})
-    df["星期"] = df["日期"].dt.day_name(locale="zh_CN")
+    _weekday_cn = {"Monday": "周一", "Tuesday": "周二", "Wednesday": "周三",
+                   "Thursday": "周四", "Friday": "周五", "Saturday": "周六", "Sunday": "周日"}
+    df["星期"] = df["日期"].dt.day_name().map(_weekday_cn)
     df["年-月"] = df["日期"].dt.strftime("%Y-%m")
     return df
 
